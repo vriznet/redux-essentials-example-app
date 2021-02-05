@@ -2,8 +2,11 @@ import React from 'react';
 import { PostAuthor } from './PostAuthor';
 import { ReactionButtons } from './ReactionButtons';
 import { Link } from 'react-router-dom';
+import { selectPostById } from './postsSlice';
+import { useSelector } from 'react-redux';
 
-export const PostExcerpt = React.memo(({ post }) => {
+export const PostExcerpt = ({ postId }) => {
+  const post = useSelector((state) => selectPostById(state, postId));
   return (
     <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
@@ -15,4 +18,4 @@ export const PostExcerpt = React.memo(({ post }) => {
       </Link>
     </article>
   );
-});
+};
